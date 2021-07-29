@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<button id="btnLoad">
+    Loading info
+</button>
+
+<div class="container">
+    <ul id="list"></ul>
+</div>
+
+@section scripts{ 
+<script>
+
+    $("#btnLoad").on("click", getList);
+
+    function getList() {
+        $.get('https://jsonplaceholder.typicode.com/posts', function (data) {
+
+            var lstado = $("#list");
+
+            $.each(data, function (index, element) {
+                lstado.append(
+                    '<ul>'
+                    + '<li type="disc">' + element.userId + ' - ' + element.id + ' - ' + element.title + ' - ' + element.body + '</li>'
+                    + '</ul>'
+                );
+                console.log(element);
+            });
+            
+
+
+        });
+    }
+
+</script>
+}

@@ -1,0 +1,58 @@
+﻿@*@model IEnumerable<ReportedeTiempoMVC.Models.ActividadesViewModel>*@
+
+@{
+    ViewData["Title"] = "ObtenerActividades";
+}
+
+<h3>Lista de Actividades</h3>
+<br />
+
+<div>
+    <table id="grid" class="table table-bordered"></table>
+</div>
+
+@section scripts{
+    <script>
+
+        //$(function () {
+        //    getActivities();
+        //});
+
+        $(function getActivities() {
+            $("#grid").empty();
+            var $grid = $("#grid");
+
+            var $tr = $("<tr></tr>");
+            $tr.append("<td>Id</td>");
+            $tr.append("<td>IdUsuario</td>");
+            $tr.append("<td>Descripcion</td>");
+            $tr.append("<td>Fecha</td>");
+            $tr.append("<td>TiempoReportado</td>");
+
+            $grid.append($tr);
+
+            $.ajax({
+                url: 'https://localhost:44310/api/actividades',
+                type: 'GET',
+                success: function (data) {
+                    $.each(data, function (idx, item) {
+                        var $tr = $("<tr></tr>");
+                        $tr.append("<td>" + item.id + "</td>");
+                        $tr.append("<td>" + item.idUsuario + "</td>");
+                        $tr.append("<td>" + item.descripcion + "</td>");
+                        $tr.append("<td>" + item.fecha + "</td>");
+                        $tr.append("<td>" + item.tiempoReportado + "</td>");
+
+                        $grid.append($tr);
+                    });
+                    console.log(data);
+                },
+                error: function (request, msg, error) {
+                    alert('Error!');
+                }
+            });
+
+        });
+    </script>
+}
+

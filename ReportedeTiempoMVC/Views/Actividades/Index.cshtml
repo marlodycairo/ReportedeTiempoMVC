@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ReportedeTiempoMVC.Models.ActividadesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <h3 class="text-center">Reporte de Actividades</h3>
+    <br />
+</div>
+<div>
+    <a asp-action ="CreateActividad" asp-controller="Actividades">Create</a>
+</div>
+<br />
+<div class="container">
+    <table class="table table-hover">
+        <thead class="text-center">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TiempoReportado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.IdUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TiempoReportado) Hora(s)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        | <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

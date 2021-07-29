@@ -1,0 +1,52 @@
+﻿@model ReportedeTiempoMVC.Models.ActividadesViewModel
+
+@{
+    ViewData["Title"] = "Create Actividad";
+}
+
+<div>
+    <h3>Registro de actividades diarias</h3>
+</div>
+
+@using (Html.BeginForm("CreateActividad", "Actividades", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="table table-bordered">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdUsuario)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IdUsuario)
+            @Html.ValidationMessageFor(model => model.IdUsuario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descripcion)
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fecha)
+            @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TiempoReportado)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TiempoReportado)
+            @Html.ValidationMessageFor(model => model.TiempoReportado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
